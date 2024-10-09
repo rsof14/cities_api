@@ -1,0 +1,9 @@
+python-dotenv==1.0.0
+flask==3.0.3
+flask-marshmallow==1.2.1
+flask_sqlalchemy==3.1.1
+flask-migrate==4.0.7
+requests==2.32.3
+pydantic==1.10.7
+psycopg2-binary==2.9.6
+marshmallow-sqlalchemy==0.29.0
