@@ -9,6 +9,16 @@ def create_city(city: dict) -> City:
     return new_city
 
 
-def does_city_exists(name: str, country: str):
+def get_city_by_name(name: str, country: str):
     return db.session.query(City).filter(
         City.name == name, City.country == country).first()
+
+
+def get_cities():
+    return City.query.all()
+
+
+def delete_city_data(city):
+    db.session.query(City).filter(
+        City.name == city.name, City.country == city.country).delete()
+    db.session.commit()
