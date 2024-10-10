@@ -1,9 +1,9 @@
-from flask import Flask, request
-from flask_migrate import Migrate
+from flask import Flask
 from api.v1.models.marshmallow_init import init_marshmallow
 from api.v1.cities import city_bp
 from core.config import app_config
 from db.pg_db import db, init_db
+from db.alembic_migrate_init import init_migration_tool
 
 
 def register_blueprints(app):
@@ -15,7 +15,7 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(app_config)
     init_db(app=app)
-    migrate = Migrate(app, db)
+    init_migration_tool(app=app, db=db)
     init_marshmallow(app=app)
     register_blueprints(app)
     return app

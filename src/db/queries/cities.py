@@ -9,5 +9,6 @@ def create_city(city: dict) -> City:
     return new_city
 
 
-def does_city_exists(name: str):
-    return db.session.query(City).filter(City.name == name).first()
+def does_city_exists(name: str, country: str):
+    return db.session.query(City).filter(
+        City.name == name, City.country == country).first()

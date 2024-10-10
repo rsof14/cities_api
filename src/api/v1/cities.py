@@ -1,9 +1,10 @@
 from http import HTTPStatus
 
-from flask import Blueprint, jsonify, request, current_app, redirect
+from flask import Blueprint, jsonify, request
 from marshmallow import ValidationError
 from api.v1.models.cities import city_schema, city_info
-from services.city.city_service import add_new_city
+from services.city.city_service import (add_new_city, CityAlreadyExists,
+                                        GettingCityInfoFailed)
 
 
 city_bp = Blueprint("city", __name__)
@@ -16,6 +17,11 @@ def create_city():
     except ValidationError as err:
         return jsonify(message=err.messages), HTTPStatus.UNPROCESSABLE_ENTITY
 
-    add_new_city(city['name'])
+    try:
+        add_new_city(city)
+    except CityAlreadyExists as err:
+        return jsonify(message=str(err)), HTTPStatus.CONFLICT
+    except GettingCityInfoFailed as err:
+        return jsonify(message=str(err)), HTTPStatus.BAD_REQUEST
 
     return {'message': 'City created'}, HTTPStatus.CREATED
