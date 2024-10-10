@@ -22,3 +22,11 @@ def delete_city_data(city):
     db.session.query(City).filter(
         City.name == city.name, City.country == city.country).delete()
     db.session.commit()
+
+
+def get_all_cities_ordered():
+    return City.query.order_by(City.lat, City.lon).all()
+
+
+def get_city_by_id(id):
+    return db.session.query(City).filter(City.city_id == id).first()

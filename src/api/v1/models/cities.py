@@ -1,4 +1,4 @@
-from marshmallow import Schema, fields, validate
+from marshmallow import fields, validate
 from api.v1.models.marshmallow_init import ma
 
 class CitySchema(ma.Schema):
@@ -13,7 +13,13 @@ class CityInfo(ma.Schema):
     lon = fields.Float()
 
 
+class MapPoint(ma.Schema):
+    lat = fields.Float()
+    lon = fields.Float()
+
+
 city_schema = CitySchema()
 city_info = CityInfo()
 cities_list = CityInfo(many=True)
+map_point = MapPoint()
 
