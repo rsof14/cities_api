@@ -67,23 +67,11 @@
 		},
 		{
 			"name": "get city",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Moscow\",\n    \"country\": \"Russia\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/v1/city",
+					"raw": "http://127.0.0.1:5000/api/v1/city?name=Moscow&country=Russia",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -96,6 +84,16 @@
 						"api",
 						"v1",
 						"city"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Moscow"
+						},
+						{
+							"key": "country",
+							"value": "Russia"
+						}
 					]
 				}
 			},
@@ -103,23 +101,11 @@
 		},
 		{
 			"name": "get nearest",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"lat\": 28.613247,\n    \"lon\": 77.200928\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
 				"url": {
-					"raw": "http://127.0.0.1:5000/api/v1/city/nearest",
+					"raw": "http://127.0.0.1:5000/api/v1/city/nearest?lat=28.613247&lon=77.200928",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -133,6 +119,16 @@
 						"v1",
 						"city",
 						"nearest"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "28.613247"
+						},
+						{
+							"key": "lon",
+							"value": "77.200928"
+						}
 					]
 				}
 			},

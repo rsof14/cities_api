@@ -44,9 +44,9 @@ def get_cities_list():
 
 @city_bp.route('/', methods=['GET'])
 def get_city():
-    json_data = request.get_json()
+    query_params = request.args.to_dict()
     try:
-        city = city_schema.load(json_data)
+        city = city_schema.load(query_params)
     except ValidationError as err:
         return jsonify(message=err.messages), HTTPStatus.UNPROCESSABLE_ENTITY
 
@@ -78,9 +78,9 @@ def delete_city():
 
 @city_bp.route('/nearest', methods=['GET'])
 def get_nearest_cities():
-    json_data = request.get_json()
+    query_params = request.args.to_dict()
     try:
-        point = map_point.load(json_data)
+        point = map_point.load(query_params)
     except ValidationError as err:
         return jsonify(message=err.messages), HTTPStatus.UNPROCESSABLE_ENTITY
 
